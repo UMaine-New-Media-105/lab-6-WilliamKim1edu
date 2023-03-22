@@ -52,14 +52,13 @@ function draw() {
   if (yLoc <= coll / 2) {
     yLoc = coll / 2;
   }
-  coinTouched = false
-  addCoin(coinX1, coinY1, 5);
-  addCoin(coinX2, coinY2, 5);
-  addCoin(coinX3, coinY3, 5);
-  addCoin(coinX4, coinY4, 5);
-  addCoin(coinX5, coinY5, 5);
-  if(coinTouched) {
+  coinTouched = false;
+  if (counter < 5) {
+    addCoin(coinX, coinY, 5);
+  }
+  if (coinTouched) {
     coinRandomizer();
+    counter += 1;
   }
 }
 
@@ -82,13 +81,11 @@ function addCharacter(transX, transY, size) {
   pop();
 }
 
-function addCoin(transX, transY, size) {
+function addCoin(transX, transY, size, ID) {
   push();
   translate(transX, transY);
   scale(size);
   noStroke();
-  fill("gold");
-  ellipse(0, 0, 5, 10);
   if (
     transX > xLoc - coll / 2 - size &&
     transX < xLoc + coll / 2 + size &&
@@ -96,19 +93,16 @@ function addCoin(transX, transY, size) {
     transY < yLoc + coll / 2 + size
   ) {
     coinTouched = true;
+    invisible = false;
   }
+
+  fill("gold");
+
+  ellipse(0, 0, 5, 10);
   pop();
 }
 
 function coinRandomizer() {
-  coinX1 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinY1 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinX2 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinY2 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinX3 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinY3 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinX4 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinY4 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinX5 = random(0 + coinBuffer, 400 - coinBuffer);
-  coinY5 = random(0 + coinBuffer, 400 - coinBuffer);
+  coinX = random(0 + coinBuffer, 400 - coinBuffer);
+  coinY = random(0 + coinBuffer, 400 - coinBuffer);
 }
